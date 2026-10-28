@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Academic Performance Predictor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">SP</div>
+      <div>
+        <h2>EduPredict</h2>
+        <small>Academic Analytics</small>
+      </div>
+    </div>
+
+    <p class="nav-label">MAIN MENU</p>
+    <a href="#dashboard" class="nav-item active">▦ Dashboard</a>
+    <a href="#predict" class="nav-item">✎ Performance Prediction</a>
+    <a href="#about" class="nav-item">ⓘ About Project</a>
+
+    <div class="sidebar-footer">
+      <div class="avatar">ML</div>
+      <div>
+        <strong>ML Project</strong>
+        <small>Student Analytics</small>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">MACHINE LEARNING PROJECT</p>
+        <h1>Student Performance</h1>
+        <p class="subtitle">Analyze academic indicators and estimate student outcomes.</p>
+      </div>
+      <span class="status">● Demo Mode</span>
+    </header>
+
+    <section id="dashboard">
+      <div class="welcome-card">
+        <div>
+          <p class="eyebrow light">ACADEMIC INTELLIGENCE</p>
+          <h2>Predict. Understand. Improve.</h2>
+          <p>Explore student performance using academic and attendance data.</p>
+          <a href="#predict" class="primary-link">Start Prediction →</a>
+        </div>
+        <div class="hero-art" aria-hidden="true">📊</div>
+      </div>
+
+      <div class="stats-grid">
+        <article class="stat-card">
+          <div class="stat-icon purple">♙</div>
+          <p>Student Records</p>
+          <h2 id="recordCount">0</h2>
+          <small>Predictions in this session</small>
+        </article>
+        <article class="stat-card">
+          <div class="stat-icon green">✓</div>
+          <p>Last Predicted Score</p>
+          <h2 id="lastScore">--</h2>
+          <small>Estimated percentage</small>
+        </article>
+        <article class="stat-card">
+          <div class="stat-icon orange">◎</div>
+          <p>Last Performance</p>
+          <h2 id="lastGrade">--</h2>
+          <small>Estimated category</small>
+        </article>
+      </div>
+    </section>
+
+    <section id="predict" class="panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">STUDENT ANALYSIS</p>
+          <h2>Performance Prediction</h2>
+          <p>Enter the student's details to estimate academic performance.</p>
+        </div>
+        <span class="step-badge">01 / INPUT</span>
+      </div>
+
+      <form id="predictionForm">
+        <div class="form-grid">
+          <div class="field full-width">
+            <label for="studentName">Student Name</label>
+            <input type="text" id="studentName"
+              placeholder="Enter student name" required maxlength="80">
+          </div>
+
+          <div class="field">
+            <label for="studentId">Student ID</label>
+            <input type="text" id="studentId"
+              placeholder="e.g. STU101" required maxlength="30">
+          </div>
+
+          <div class="field">
+            <label for="attendance">Attendance (%)</label>
+            <input type="number" id="attendance"
+              min="0" max="100" step="0.1" placeholder="e.g. 85" required>
+          </div>
+
+          <div class="field">
+            <label for="previousMarks">Previous Exam Marks (%)</label>
+            <input type="number" id="previousMarks"
+              min="0" max="100" step="0.1" placeholder="e.g. 75" required>
+          </div>
+
+          <div class="field">
+            <label for="assignmentMarks">Assignment Marks (%)</label>
+            <input type="number" id="assignmentMarks"
+              min="0" max="100" step="0.1" placeholder="e.g. 80" required>
+          </div>
+
+          <div class="field">
+            <label for="studyHours">Study Hours per Day</label>
+            <input type="number" id="studyHours"
+              min="0" max="24" step="0.5" placeholder="e.g. 4" required>
+          </div>
+
+          <div class="field">
+            <label for="participation">Class Participation</label>
+            <select id="participation" required>
+              <option value="">Select level</option>
+              <option value="1">Low</option>
+              <option value="2">Medium</option>
+              <option value="3">High</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="reset" class="secondary-btn">Clear Form</button>
+          <button type="submit" class="primary-btn">
+            Predict Performance →
+          </button>
+        </div>
+      </form>
+
+      <div id="result" class="result-card" hidden aria-live="polite">
+        <div class="result-top">
+          <div>
+            <p class="eyebrow">PREDICTION RESULT</p>
+            <h2 id="resultName">Student</h2>
+            <p id="resultId" class="muted"></p>
+          </div>
+          <span id="gradeBadge" class="grade-badge">Good</span>
+        </div>
+
+        <div class="score-display">
+          <div>
+            <span class="muted">Estimated academic score</span>
+            <h3><span id="predictedScore">0</span><small>/100</small></h3>
+          </div>
+          <div id="scoreRing" class="score-ring">
+            <span id="ringScore">0%</span>
+          </div>
+        </div>
+
+        <div class="progress-track">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+
+        <h3 class="recommendation-title">Personalized guidance</h3>
+        <p id="recommendation" class="recommendation"></p>
+
+        <p class="disclaimer">
+          This is a demonstration estimate, not a validated ML prediction.
+        </p>
+      </div>
+    </section>
+
+    <section id="about" class="panel about-panel">
+      <p class="eyebrow">PROJECT OVERVIEW</p>
+      <h2>About this system</h2>
+      <p>
+        This project demonstrates how academic indicators can be used to
+        estimate student performance. The interface currently uses a
+        sample weighted-score formula. A trained machine learning model
+        can be connected through a Python Flask API.
+      </p>
+
+      <div class="feature-grid">
+        <div>
+          <span>01</span>
+          <h3>Data Collection</h3>
+          <p>Collect attendance, marks and study habits.</p>
+        </div>
+        <div>
+          <span>02</span>
+          <h3>Prediction</h3>
+          <p>Estimate an academic score from the input data.</p>
+        </div>
+        <div>
+          <span>03</span>
+          <h3>Improvement</h3>
+          <p>Provide suggestions based on student indicators.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Student Academic Performance Prediction System
+      <span>© 2026 · Academic Project</span>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
